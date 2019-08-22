@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        soundManager.Instance.PlaySound(0);
+        //soundManager2.Instance.PlaySound(0);
         SceneManager.LoadScene("Game");
 
     }
@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OptionGame()
     {
-        soundManager.Instance.PlaySound(0);
+        //soundManager2.Instance.PlaySound(0);
         SceneManager.LoadScene("Options");
     }
 }

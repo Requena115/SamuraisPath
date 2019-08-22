@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +12,18 @@ public class Enemy : MonoBehaviour
     private const float GRAVITY = 2.0f;
 
 
+    public Sprite[] sprites;
+    private int spriteIndex;
+    public SpriteRenderer sRenderer;
+    private float lastUpdateSprite;
+    private float lastDeltaUpdate = 0.125f;
+
+    private void Awake()
+    {
+        sRenderer = GetComponent<SpriteRenderer>();
+    }
+
+
     public void LaunchEnemy(float verticalVelocity, float xSpeed, float xStart)
     {
         IsActive = true;
@@ -19,6 +31,8 @@ public class Enemy : MonoBehaviour
         this.verticalVelocity = verticalVelocity;
         transform.position = new Vector3(xStart, 0, 0);
         isSlice = false;
+        spriteIndex = 0;
+        sRenderer.sprite = sprites[spriteIndex];
     }
 
     private void Update()
@@ -27,6 +41,16 @@ public class Enemy : MonoBehaviour
             return;
         verticalVelocity -= GRAVITY * Time.deltaTime;
         transform.position += new Vector3(speed, verticalVelocity, 0) * Time.deltaTime;
+
+        if (isSlice)
+        {
+            if (spriteIndex != sprites.Length-1 && Time.time - lastUpdateSprite > lastDeltaUpdate)
+            {
+                lastUpdateSprite = Time.time;
+                spriteIndex++;
+                sRenderer.sprite = sprites[spriteIndex];
+            }
+        }
 
         if (transform.position.y < -1)
         {

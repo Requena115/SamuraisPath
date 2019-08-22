@@ -8,7 +8,7 @@ public class AcceleratorTest : MonoBehaviour
     private void Start()
     {
         //As said before, when the function onShake activates, the action triggers
-        Accelerometer.Instance.OnShake += ActionToRunWhenShakingDevice; 
+        Accelerometer.Instance.OnShake += ActionToRunWhenShakingDevice;
     }
 
     private void OnDestroy()

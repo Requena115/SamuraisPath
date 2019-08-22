@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Accelerometer : MonoBehaviour {
+public class Accelerometer : MonoBehaviour
+{
     #region Instance
     private static Accelerometer instance;
     public static Accelerometer Instance
@@ -48,13 +49,16 @@ public class Accelerometer : MonoBehaviour {
 
     private void Update()
     {
-        Vector3 acceleration = Input.acceleration; 
+        Vector3 acceleration = Input.acceleration;
         lowPassValue = Vector3.Lerp(lowPassValue, acceleration, lowPassFilterFactor);
         Vector3 deltaAcceleration = acceleration - lowPassValue;
 
         //Shake Detection here. Using OnShake function in the code will trigger everytime the shake detection activates.
         if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
-            OnShake?.Invoke();
+        {
+            //OnShake?.Invoke();
+        }
+
     }
 
 }

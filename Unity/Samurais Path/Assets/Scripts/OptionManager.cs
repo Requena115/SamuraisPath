@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour {
+    
+    private soundManager2 soundManager2;
 
-    public Slider Volume;
-    public AudioSource music;
+
+    void Start()
+    {
+        soundManager2 = GameObject.FindObjectOfType<soundManager2>();
+    }
 
 
     public void backMenu()
@@ -15,8 +20,13 @@ public class OptionManager : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
     
-     public void ChangeVolume()
+    public void PauseMusic()
     {
-        music.volume = Volume.value;
+        soundManager2.ToggleSound();
+    }
+
+    public void setVolume()
+    {
+        soundManager2.SetVolume();
     }
 }
