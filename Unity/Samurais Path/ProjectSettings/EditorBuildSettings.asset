@@ -17,3 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Options.unity
     guid: 911c600565e1173418cf905fbaae373e
+  - enabled: 1
+    path: Assets/Scene/Historia.unity
+    guid: fc3623dd3269b804eb9dd672b902691d
+  - enabled: 1
+    path: Assets/Scene/SelectMode.unity
+    guid: 6b482fbf61264e449afef26ff67d8bdd
+  - enabled: 1
+    path: Assets/Scene/Apariencia.unity
+    guid: 3fae9b6017c6c2c44ba437f5e2cd64c8
+  - enabled: 1
+    path: Assets/Scene/Ranking.unity
+    guid: 16b9870d73f596a44be8cdbe0c484e00

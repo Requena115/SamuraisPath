@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine;using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -18,9 +17,32 @@ public class MenuManager : MonoBehaviour
         Debug.Log("QUIT");
         Application.Quit();
     }
-    public void OptionGame()
+    public void SelectOption()
     {
         //soundManager2.Instance.PlaySound(0);
         SceneManager.LoadScene("Options");
+    }
+
+    public void SelectMode()
+    {
+        SceneManager.LoadScene("SelectMode");
+    }
+
+    public void SelectHistoria()
+    {
+        SceneManager.LoadScene("Historia");
+    }
+
+    public void SelectApariencia()
+    {
+        SceneManager.LoadScene("Apariencia");
+    }
+    public void SelectMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void SelectLeaderboard()
+    {
+        SceneManager.LoadScene("Ranking");
     }
 }
