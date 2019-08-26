@@ -184,12 +184,21 @@ public class GameManager : MonoBehaviour {
             highscoreText.text = "Best:" + highscore.ToString();
             PlayerPrefs.SetInt("Score", highscore);
         }
+        if (score > 25)
+        {
+            PlayerPrefs.SetInt("MAX_LEVEL", 2);
+        }
+        if (score > 50)
+        {
+            PlayerPrefs.SetInt("MAX_LEVEL", 3);
+        }
+
     }
 
     public void Death()
     {
         isPause = true;
-        deathMenu.SetActive(true);
+        deathMenu.SetActive(true); 
     }
 
     

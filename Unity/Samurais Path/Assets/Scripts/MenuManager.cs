@@ -45,4 +45,16 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Ranking");
     }
+    public void SelectDefault()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    public void SelectRojo()
+    {
+        SceneManager.LoadScene("GameRojo");
+    }
+    public void SelectVerde()
+    {
+        SceneManager.LoadScene("GameVerde");
+    }
 }

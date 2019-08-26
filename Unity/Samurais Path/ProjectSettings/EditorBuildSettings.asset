@@ -29,3 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Ranking.unity
     guid: 16b9870d73f596a44be8cdbe0c484e00
+  - enabled: 1
+    path: Assets/Scene/GameRojo.unity
+    guid: 9c472d8978c2df8418b3b17e161b0781
+  - enabled: 1
+    path: Assets/Scene/GameVerde.unity
+    guid: bef7550182269314f9c63c2e34b525b4

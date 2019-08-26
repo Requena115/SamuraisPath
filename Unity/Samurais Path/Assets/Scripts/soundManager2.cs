@@ -8,7 +8,6 @@ public class soundManager2 : MonoBehaviour
     public static soundManager2 Instance { set; get; }
 
     public AudioSource music;
-    private Slider musicVolume;
 
     static soundManager2 instance = null;
     //playSound soundManager
@@ -44,7 +43,7 @@ public class soundManager2 : MonoBehaviour
 
     public void SetVolume()
     {
-        music.volume = musicVolume.value ;
+        music.volume = GameObject.Find("VolumeSlider").GetComponent<Slider>().value ;
     }
 
     
