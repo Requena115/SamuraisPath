@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/GameVerde.unity
     guid: bef7550182269314f9c63c2e34b525b4
+  - enabled: 1
+    path: Assets/Scene/HistoriaGame.unity
+    guid: 7ceebdb76c948ff4e8ef6617c7666339

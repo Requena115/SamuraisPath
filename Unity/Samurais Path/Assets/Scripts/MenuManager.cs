@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
     public void PlayGame()
     {
         //soundManager2.Instance.PlaySound(0);
@@ -33,6 +33,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Historia");
     }
 
+    public void SelectGameHistoria()
+    {
+        SceneManager.LoadScene("HistoriaGame");
+    }
+
     public void SelectApariencia()
     {
         SceneManager.LoadScene("Apariencia");
@@ -56,5 +61,14 @@ public class MenuManager : MonoBehaviour
     public void SelectVerde()
     {
         SceneManager.LoadScene("GameVerde");
+    }
+    public void resetScore()
+    {
+        PlayerPrefs.DeleteKey("Score");
+        
+    }
+    public void resetHistoria()
+    {
+        PlayerPrefs.DeleteKey("MAX_LEVEL");
     }
 }

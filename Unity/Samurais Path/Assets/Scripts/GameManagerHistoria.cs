@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManagerHistoria : MonoBehaviour
+{
 
-    private List<Enemy> enemies = new List<Enemy>();
+    private List<EnemyHistory> enemies = new List<EnemyHistory>();
     private Collider2D[] enemiesS;
     public GameObject enemyPrefab;
 
-    private List<Bomb> bombs = new List<Bomb>();
+    private List<BombHistory> bombs = new List<BombHistory>();
     private Collider2D[] bombsS;
     public GameObject bombPrefab;
 
@@ -19,24 +20,22 @@ public class GameManager : MonoBehaviour {
     private float deltaSpawn = 1.0f;
     private float lastSpawnB;
     private float deltaSpawnB = 5.0f;
-   
+
     private const float SLICEFORCE = 50.0f;
     private Vector3 lastMousePosition;
     private bool isPause;
 
     private int score;
-    private int highscore;
     private int lifepoint;
     public Text scoreText;
-    public Text highscoreText;
     public Image[] lifepoints;
     public GameObject pauseMenu;
     public GameObject deathMenu;
 
-    
+
     public Transform trail;
-    
-    public static GameManager Instance { set; get; }
+
+    public static GameManagerHistoria Instance { set; get; }
 
     private void Awake()
     {
@@ -56,17 +55,15 @@ public class GameManager : MonoBehaviour {
         lifepoint = 3;
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
-        highscore = PlayerPrefs.GetInt("Score");
-        highscoreText.text = "Best : " + highscore.ToString();
         Time.timeScale = 1;
         isPause = false;
 
         foreach (Image i in lifepoints)
             i.enabled = true;
-        foreach (Enemy e in enemies)
+        foreach (EnemyHistory e in enemies)
             Destroy(e.gameObject);
         enemies.Clear();
-        foreach (Bomb b in bombs)
+        foreach (BombHistory b in bombs)
             Destroy(b.gameObject);
         bombs.Clear();
 
@@ -83,19 +80,19 @@ public class GameManager : MonoBehaviour {
     {
         if (isPause)
             return;
-        if(Time.time - lastSpawn > deltaSpawn)
+        if (Time.time - lastSpawn > deltaSpawn)
         {
-            Enemy e = GetEnemy();
+            EnemyHistory e = GetEnemy();
             float randomX = Random.Range(-1.65f, 1.65f);
 
             e.LaunchEnemy(Random.Range(1.85f, 2.75f), randomX, -randomX);
             lastSpawn = Time.time;
         }
-        if(Time.time - lastSpawnB > deltaSpawnB)
+        if (Time.time - lastSpawnB > deltaSpawnB)
         {
-            Bomb e = GetBomb();
+            BombHistory c = GetBomb();
             float randomX = Random.Range(-1.65f, 1.65f);
-            e.LaunchBomb(Random.Range(1.85f, 2.75f), randomX, -randomX);
+            c.LaunchBomb(Random.Range(1.85f, 2.75f), randomX, -randomX);
             lastSpawnB = Time.time;
         }
         if (Input.GetMouseButton(0))
@@ -103,8 +100,8 @@ public class GameManager : MonoBehaviour {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = -1;
             trail.position = pos;
-            Collider2D[] thisFramesEnemy = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("Enemy"));
-            Collider2D[] thisFramesBomb = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("Bomb"));
+            Collider2D[] thisFramesEnemy = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("EnemyHistory"));
+            Collider2D[] thisFramesBomb = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("BombHistory"));
 
             if ((Input.mousePosition - lastMousePosition).sqrMagnitude > SLICEFORCE)
             {
@@ -114,7 +111,7 @@ public class GameManager : MonoBehaviour {
                     {
                         if (c == enemiesS[i])
                         {
-                            c.GetComponent<Enemy>().Slice();
+                            c.GetComponent<EnemyHistory>().Slice();
                         }
                     }
                 }
@@ -124,38 +121,38 @@ public class GameManager : MonoBehaviour {
                     {
                         if (c == bombsS[i])
                         {
-                            c.GetComponent<Bomb>().Slice();
+                            c.GetComponent<BombHistory>().Slice();
                         }
                     }
                 }
             }
-  
+
             lastMousePosition = Input.mousePosition;
             enemiesS = thisFramesEnemy;
             bombsS = thisFramesBomb;
-                
+
         }
     }
 
-    private Enemy GetEnemy()
+    private EnemyHistory GetEnemy()
     {
-        Enemy e = enemies.Find(x => !x.IsActive);
+        EnemyHistory e = enemies.Find(x => !x.IsActive);
 
-        if ( e == null)
+        if (e == null)
         {
-            e = Instantiate(enemyPrefab).GetComponent<Enemy>();
+            e = Instantiate(enemyPrefab).GetComponent<EnemyHistory>();
             enemies.Add(e);
 
         }
         return e;
     }
 
-    private Bomb GetBomb()
+    private BombHistory GetBomb()
     {
-        Bomb b = bombs.Find(x => !x.IsActive);
-        if(b == null)
+        BombHistory b = bombs.Find(x => !x.IsActive);
+        if (b == null)
         {
-            b = Instantiate(bombPrefab).GetComponent<Bomb>();
+            b = Instantiate(bombPrefab).GetComponent<BombHistory>();
             bombs.Add(b);
         }
         return b;
@@ -178,30 +175,22 @@ public class GameManager : MonoBehaviour {
         score = score + scoreAmount;
         scoreText.text = score.ToString();
 
-        if (score > highscore)
+        if (score > 30)
         {
-            highscore = score;
-            highscoreText.text = "Best:" + highscore.ToString();
-            PlayerPrefs.SetInt("Score", highscore);
+            PlayerPrefs.SetInt("MAX_LEVEL", 2);
         }
-        //if (score > 25)
-        //{
-        //  PlayerPrefs.SetInt("MAX_LEVEL", 2);
-        //}
-        //if (score > 50)
-        //{
-        //    PlayerPrefs.SetInt("MAX_LEVEL", 3);
-        //}
+        if (score > 50)
+        {
+            PlayerPrefs.SetInt("MAX_LEVEL", 3);
+        }
 
     }
 
     public void Death()
     {
         isPause = true;
-        deathMenu.SetActive(true); 
+        deathMenu.SetActive(true);
     }
-
-    
 
     public void PauseGame()
     {
@@ -212,8 +201,8 @@ public class GameManager : MonoBehaviour {
 
     public void backMenu()
     {
-     
-            SceneManager.LoadScene("Menu");
+
+        SceneManager.LoadScene("Menu");
     }
 
 }
