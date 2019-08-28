@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class soundManager2 : MonoBehaviour
 {
-    public static soundManager2 Instance { set; get; }
-
     public AudioSource music;
 
-    static soundManager2 instance = null;
+    private AudioClip[] songs;
+
+    public static soundManager2 instance = null;
     //playSound soundManager
     private void Awake()
     {
@@ -21,8 +21,23 @@ public class soundManager2 : MonoBehaviour
         {
             instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
+            songs = Resources.LoadAll<AudioClip>("Music");            
         }
     }
+
+    public void ChangeMusic(string name)
+    {
+        foreach(AudioClip s in songs)
+        {
+            if(s.name == name)
+            {
+                music.clip = s;
+                music.Play();
+                return;
+            }
+        }
+    }
+        
 
     public void ToggleSound()
     {

@@ -71,4 +71,9 @@ public class MenuManager : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("MAX_LEVEL");
     }
+
+    public void changeMusic(string song)
+    {
+        soundManager2.instance.ChangeMusic(song);
+    }
 }
