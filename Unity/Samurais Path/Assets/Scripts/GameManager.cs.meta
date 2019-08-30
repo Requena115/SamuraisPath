@@ -5,7 +5,15 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemyPrefab: {instanceID: 0}
+  - bombPrefab: {instanceID: 0}
+  - powerUpPrefab: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - highscoreText: {instanceID: 0}
+  - pauseMenu: {instanceID: 0}
+  - deathMenu: {instanceID: 0}
+  - trail: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -14,12 +14,19 @@ public class GameManager : MonoBehaviour {
     private Collider2D[] bombsS;
     public GameObject bombPrefab;
 
+    private List<PowerUp> powerUps = new List<PowerUp>();
+    private Collider2D[] powerUpsS;
+    public GameObject powerUpPrefab;
+
+    private bool isPowerUpActive = false;
 
     private float lastSpawn;
     private float deltaSpawn = 1.0f;
     private float lastSpawnB;
     private float deltaSpawnB = 5.0f;
-   
+    private float lastSpawnP;
+    private float deltaSpawnP = 1.0f;
+
     private const float SLICEFORCE = 50.0f;
     private Vector3 lastMousePosition;
     private bool isPause;
@@ -47,6 +54,7 @@ public class GameManager : MonoBehaviour {
     {
         enemiesS = new Collider2D[0];
         bombsS = new Collider2D[1];
+        powerUpsS = new Collider2D[2];
         NewGame();
     }
 
@@ -57,7 +65,7 @@ public class GameManager : MonoBehaviour {
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
         highscore = PlayerPrefs.GetInt("Score");
-        highscoreText.text = "Best : " + highscore.ToString();
+        highscoreText.text = "BEST : " + highscore.ToString();
         Time.timeScale = 1;
         isPause = false;
 
@@ -69,6 +77,9 @@ public class GameManager : MonoBehaviour {
         foreach (Bomb b in bombs)
             Destroy(b.gameObject);
         bombs.Clear();
+        foreach (PowerUp p in powerUps)
+            Destroy(p.gameObject);
+        powerUps.Clear();
 
 
 
@@ -98,6 +109,13 @@ public class GameManager : MonoBehaviour {
             e.LaunchBomb(Random.Range(1.85f, 2.75f), randomX, -randomX);
             lastSpawnB = Time.time;
         }
+        if (Time.time - lastSpawnP > deltaSpawnP)
+        {
+            PowerUp e = GetPowerUp();
+            float randomX = Random.Range(-1.65f, 1.65f);
+            e.LaunchPowerUp(Random.Range(1.85f, 2.75f), randomX, -randomX);
+            lastSpawnP = Time.time;
+        }
         if (Input.GetMouseButton(0))
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -105,6 +123,7 @@ public class GameManager : MonoBehaviour {
             trail.position = pos;
             Collider2D[] thisFramesEnemy = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("Enemy"));
             Collider2D[] thisFramesBomb = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("Bomb"));
+            Collider2D[] thisFramesPowerUp = Physics2D.OverlapPointAll(new Vector2(pos.x, pos.y), LayerMask.GetMask("PowerUp"));
 
             if ((Input.mousePosition - lastMousePosition).sqrMagnitude > SLICEFORCE)
             {
@@ -128,11 +147,22 @@ public class GameManager : MonoBehaviour {
                         }
                     }
                 }
+                foreach (Collider2D c in thisFramesPowerUp)
+                {
+                    for (int i = 0; i < powerUpsS.Length; i++)
+                    {
+                        if (c == powerUpsS[i])
+                        {
+                            c.GetComponent<PowerUp>().Slice();
+                        }
+                    }
+                }
             }
   
             lastMousePosition = Input.mousePosition;
             enemiesS = thisFramesEnemy;
             bombsS = thisFramesBomb;
+            powerUpsS = thisFramesPowerUp;
                 
         }
     }
@@ -159,6 +189,22 @@ public class GameManager : MonoBehaviour {
             bombs.Add(b);
         }
         return b;
+    }
+
+    private PowerUp GetPowerUp()
+    {
+        PowerUp p = powerUps.Find(x => !x.IsActive);
+        if (p == null)
+        {
+            p = Instantiate(powerUpPrefab).GetComponent<PowerUp>();
+            powerUps.Add(p);
+        }
+        return p;
+    }
+
+    public void gainPowerUp() {
+        isPowerUpActive = true;
+        Debug.Log("power up obtained");
     }
 
     public void LoseLP()

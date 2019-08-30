@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "780392912692",
+    "firebase_url": "https://samurai-s-path.firebaseio.com",
+    "project_id": "samurai-s-path",
+    "storage_bucket": "samurai-s-path.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780392912692:android:60bb95643898e37d",
+        "android_client_info": {
+          "package_name": "com.Company.ProductName"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780392912692-katshj1fh8nl14c3f85hthnnamjl0gll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcb01gC4kdiUMbD3VUPtB8QnZizxbVh2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780392912692-katshj1fh8nl14c3f85hthnnamjl0gll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
