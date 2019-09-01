@@ -635,9 +635,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: c1357291-0cfe-4ddc-89e9-85f1f83c3589
+  cloudProjectId: c8b51852-b95f-410c-8584-5a0f875c986a
   projectName: Samurais Path
-  organizationId: reque1993
+  organizationId: manpercar
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
