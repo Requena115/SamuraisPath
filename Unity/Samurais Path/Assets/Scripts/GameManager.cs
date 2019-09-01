@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
         highscore = PlayerPrefs.GetInt("Score");
-        highscoreText.text = "BEST : " + highscore.ToString();
+        highscoreText.text = highscore.ToString();
         Time.timeScale = 1;
         isPause = false;
 
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour {
         if (score > highscore)
         {
             highscore = score;
-            highscoreText.text = "Best:" + highscore.ToString();
+            highscoreText.text = highscore.ToString();
             PlayerPrefs.SetInt("Score", highscore);
         }
         //if (score > 25)
