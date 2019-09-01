@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     private float lastSpawnB;
     private float deltaSpawnB = 5.0f;
     private float lastSpawnP;
-    private float deltaSpawnP = 1.0f;
+    private float deltaSpawnP = 25.0f;
 
     private const float SLICEFORCE = 50.0f;
     private Vector3 lastMousePosition;
