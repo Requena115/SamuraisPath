@@ -2,7 +2,17 @@ fileFormatVersion: 2
 guid: dbc203ee084bccd4386af01b47f73401
 timeCreated: 18446744011573954816
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: HighScore2_0
+    21300002: HighScore2_1
+    21300004: HighScore2_2
+    21300006: HighScore2_3
+    21300008: HighScore2_4
+    21300010: HighScore2_5
+    21300012: HighScore2_6
+    21300014: HighScore2_7
+    21300016: HighScore2_8
+    21300018: HighScore2_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
