@@ -486,7 +486,6 @@
     <Compile Include="Assets\HealthHeartSystem\Scripts\HealthBarHUDTester.cs" />
     <Compile Include="Assets\HealthHeartSystem\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Accelerometer.cs" />
-    <Compile Include="Assets\Scripts\AccelerometerTest.cs" />
     <Compile Include="Assets\Scripts\BloqueadorNiveles.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\BombHistory.cs" />
@@ -498,6 +497,8 @@
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\OptionManager.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\PowerUpController.cs" />
+    <Compile Include="Assets\Scripts\Rankings.cs" />
     <Compile Include="Assets\Scripts\soundManager.cs" />
     <Compile Include="Assets\Scripts\soundManager2.cs" />
   </ItemGroup>

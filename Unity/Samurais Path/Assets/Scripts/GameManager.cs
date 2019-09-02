@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,14 +19,14 @@ public class GameManager : MonoBehaviour {
     private Collider2D[] powerUpsS;
     public GameObject powerUpPrefab;
 
-    private bool isPowerUpActive = false;
+    public bool isPowerUpActive = false;
 
     private float lastSpawn;
     private float deltaSpawn = 1.0f;
     private float lastSpawnB;
     private float deltaSpawnB = 5.0f;
     private float lastSpawnP;
-    private float deltaSpawnP = 25.0f;
+    private float deltaSpawnP = 1.0f;
 
     private const float SLICEFORCE = 50.0f;
     private Vector3 lastMousePosition;
@@ -244,7 +245,17 @@ public class GameManager : MonoBehaviour {
     public void Death()
     {
         isPause = true;
-        deathMenu.SetActive(true); 
+        Debug.Log("The score is: " + score);
+        if (PlayGamesPlatform.Instance.localUser.authenticated)
+        {
+            PlayGamesPlatform.Instance.ReportScore(score,
+                GPGSIds.leaderboard_ninja_sliced,
+                (bool success) =>
+                {
+                    Debug.Log("Leaderboard update success: " + success);
+                });
+        }
+        deathMenu.SetActive(true);
     }
 
     

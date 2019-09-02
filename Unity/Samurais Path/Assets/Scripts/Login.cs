@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour {
     private Text signInButtonText;
     private Text authStatus;
+    private GameObject ldrButton;
 
     void Start()
     {
@@ -34,7 +35,21 @@ public class Login : MonoBehaviour {
         signInButtonText = GameObject.Find("SignIn").GetComponentInChildren<Text>();
         authStatus = GameObject.Find("authStatus").GetComponent<Text>();
 
+        ldrButton = GameObject.Find("ldrButton");
+
         PlayGamesPlatform.Instance.Authenticate(SignInCallback, true);
+    }
+
+    void Update()
+    {
+        ldrButton.SetActive(!PlayGamesPlatform.Instance.IsAuthenticated());
+    }
+
+    public void ShowLeaderBoards()
+    {
+      
+            PlayGamesPlatform.Instance.ShowLeaderboardUI();
+      
     }
 
     public void Play()
@@ -46,7 +61,7 @@ public class Login : MonoBehaviour {
 
     public void SignIn()
     {
-        if (!PlayGamesPlatform.Instance.localUser.authenticated)
+        if (!PlayGamesPlatform.Instance.IsAuthenticated())
         {
             // Sign in with Play Game Services, showing the consent dialog
             // by setting the second parameter to isSilent=false.
