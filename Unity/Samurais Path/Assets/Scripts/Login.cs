@@ -11,12 +11,11 @@ using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour {
     private Text signInButtonText;
     private Text authStatus;
-    private GameObject ldrButton;
 
     void Start()
     {
 
-        GameObject startButton = GameObject.Find("startButton");
+        GameObject startButton = GameObject.Find("Start");
         EventSystem.current.firstSelectedGameObject = startButton;
 
         // ADD Play Game Services init code here.
@@ -35,21 +34,7 @@ public class Login : MonoBehaviour {
         signInButtonText = GameObject.Find("SignIn").GetComponentInChildren<Text>();
         authStatus = GameObject.Find("authStatus").GetComponent<Text>();
 
-        ldrButton = GameObject.Find("ldrButton");
-
         PlayGamesPlatform.Instance.Authenticate(SignInCallback, true);
-    }
-
-    void Update()
-    {
-        ldrButton.SetActive(!PlayGamesPlatform.Instance.IsAuthenticated());
-    }
-
-    public void ShowLeaderBoards()
-    {
-      
-            PlayGamesPlatform.Instance.ShowLeaderboardUI();
-      
     }
 
     public void Play()
