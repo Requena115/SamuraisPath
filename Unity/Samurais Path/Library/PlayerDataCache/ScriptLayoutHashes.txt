@@ -1,5 +1,6 @@
 Android
 SceneListBegin?
+Assets/Scene/Login.unity
 Assets/Scene/Menu.unity
 Assets/Scene/Game.unity
 Assets/Scene/Options.unity
@@ -160,7 +161,9 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 e5b01d54e11fc26121c46b3335eb9201 Assembly-CSharp.dll:.Accelerometer
 313a5a2ff85a58de7d5a10f7c677b4b3 Assembly-CSharp.dll:.soundManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:GooglePlayGames.OurUtils.PlayGamesHelperObject
 7728a4374b2d1e1390f8da4d8bbb3535 Assembly-CSharp.dll:.Bomb
 7728a4374b2d1e1390f8da4d8bbb3535 Assembly-CSharp.dll:.Enemy
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HealthBarHUDTester
 7728a4374b2d1e1390f8da4d8bbb3535 Assembly-CSharp.dll:.EnemyHistory
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Login
